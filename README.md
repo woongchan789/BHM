@@ -17,7 +17,7 @@ I_S(Scale, I_Tdia-I_Tsys) 사이의 회귀식을 도출하여 검출하였습니
 WHAT IS PPG?
 ---
 
-![image](https://user-images.githubusercontent.com/75806377/216873529-fbdedfb0-c9c1-4efd-9d7f-36f510878c63.png)
+<p align="center"><img src="https://user-images.githubusercontent.com/75806377/216873529-fbdedfb0-c9c1-4efd-9d7f-36f510878c63.png" height="500px" width="1000px"></p>
 
 PPG 신호는 웨어러블 기기, 병원용 맥박 측정기 등 다양하게 사용되고 있는데요.  
 피부에 빛을 쏠 때 혈류량에 따라 흡수되는 빛의 양이 달라지는 원리에 기반하고 있습니다.  
