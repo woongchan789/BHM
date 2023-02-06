@@ -8,8 +8,8 @@
 본 연구에서는 PPG 신호의 원리를 스마트폰 카메라에 적용하여 알고리즘을 구현하였으며  
 보다 높은 정확도 향상을 목적으로 직접 다양한 실험을 통해 최적의 BPF(Band-Pass Filter)를 설계하였습니다.  
 심박수는 DC성분 제거 > BPF > Fourier transform > Amplitude(진폭)을 계산하여 심박수를 검출하였고  
-혈압의 경우 실험을 통해 혈압과 I_Rsys(min(R값), SBP(수축기 혈압)와 연관), I_Rdia(max(R값), DBP(이완기 혈압)와 연관),  
-I_s(Scale, I_Rdia-I_Rsys) 사이의 회귀식을 도출하여 검출하였습니다.  
+혈압의 경우 실험을 통해 혈압과 I_Tsys(min(R값), SBP(수축기 혈압)와 연관), I_Tdia(max(R값), DBP(이완기 혈압)와 연관),  
+I_S(Scale, I_Tdia-I_Tsys) 사이의 회귀식을 도출하여 검출하였습니다.  
 
 WHAT IS PPG?
 ---
@@ -49,19 +49,19 @@ HEART RATE MEASUREMENT
 
 BLOOD PRESSURE MEASUREMENT
 ---
-심박수를 측정하는 원리는 크게 4단계로 이루어집니다.  
+혈압을 측정하는 원리는 크게 4단계로 이루어집니다.  
 
-<p align="center"><img src="https://user-images.githubusercontent.com/75806377/216889541-5676187d-087c-4361-8367-f6479a9e9bb8.png" height="300px" width="500px"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/75806377/216947733-5c0eab0e-c106-49ed-b6b9-f8efb7d0a1fd.png" height="300px" width="500px"></p>
 
 1. Average red intensity per frame - frame 당 평균 R값(Red)을 계산합니다.  
-2. MAX 값을 I_Rdia, MIN 값을 I_Rsys, range를 I_s로 계산합니다.  
+2. MAX 값을 I_Tdia, MIN 값을 I_Tsys, range를 I_S로 계산합니다.  
 3. 사전 실험으로 도출한 회귀식에 대입하여 혈압을 계산합니다.  
 
 <div align="center">
-SBP(수축기 혈압) = -0.599*I_Rsys - 0.656*I_s + 249.942
+SBP(수축기 혈압) = -0.599*I_Tsys - 0.656*I_S + 249.942
 </div>
 <div align="center">
-DBP(이완기 혈압) = -0.212*I_Rdia - 0.251*I_s + 153.211
+DBP(이완기 혈압) = -0.212*I_Tdia - 0.251*I_S + 153.211
 </div> 
 
 
