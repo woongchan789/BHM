@@ -7,6 +7,9 @@
 구매해야한다는 단점에서 벗어나 누구나 손쉽게 헬스케어 서비스를 받을 수 있게하자는 목표로 진행하였습니다.  
 본 연구에서는 PPG 신호의 원리를 스마트폰 카메라에 적용하여 알고리즘을 구현하였으며  
 보다 높은 정확도 향상을 목적으로 직접 다양한 실험을 통해 최적의 BPF(Band-Pass Filter)를 설계하였습니다.  
+심박수는 DC성분 제거 > BPF > Fourier transform > Amplitude(진폭)을 계산하여 심박수를 검출하였고  
+혈압의 경우 실험을 통해 혈압과 I_Rsys(min(R값), SBP(수축기 혈압)와 연관), I_Rdia(max(R값), DBP(이완기 혈압)와 연관),  
+I_s(Scale, I_Rdia-I_Rsys) 사이의 회귀식을 도출하여 검출하였습니다.  
 
 WHAT IS PPG?
 ---
@@ -30,7 +33,8 @@ SMARTPHONE VIDEO CAMERA
 
 위의 영상이 스마트폰 비디오 카메라로 촬영한 동영상입니다.  
 촬영하는 원리는 스마트폰의 플래시를 활성화한채로 플래시부분과 카메라 센서를 동시에 손가락으로 감싸 영상을 촬영합니다.  
-영상을 보시면 빨간 배경에 반복적으로 살짝 어두워졌다가 밝아지기를 반복하는 패턴이 보입니다!
+영상을 보시면 빨간 배경에 반복적으로 살짝 어두워졌다가 밝아지기를 반복하는 패턴이 보입니다!  
+해당 영상을 frame별로 분할한 뒤 R값을 계산하여 PPG 신호를 구현하였습니다.
 
 HEART RATE MEASUREMENT
 ---
@@ -41,6 +45,23 @@ HEART RATE MEASUREMENT
 1. Average red intensity per frame - frame 당 평균 R값(Red)을 계산합니다.  
 2. Peak detection algorithm - 주기적으로 나타나는 뾰족한 peak를 찾아냅니다.  
 3. R-R interval(RRI) - Peak 사이의 시간 간격을 의미하는 RRI를 계산합니다.  
-4. 60/RRI - 구한 RRI를 사용하여 60/RRI를 하게되면 심박수를 계산할 수 있습니다.  
+4. 60/RRI - 구한 RRI를 사용하여 심박수(Heart rate) = 60/RRI 로 계산합니다.  
+
+BLOOD PRESSURE MEASUREMENT
+---
+심박수를 측정하는 원리는 크게 4단계로 이루어집니다.  
+
+<p align="center"><img src="https://user-images.githubusercontent.com/75806377/216889541-5676187d-087c-4361-8367-f6479a9e9bb8.png" height="300px" width="500px"></p>
+
+1. Average red intensity per frame - frame 당 평균 R값(Red)을 계산합니다.  
+2. MAX 값을 I_Rdia, MIN 값을 I_Rsys, range를 I_s로 계산합니다.  
+3. 사전 실험으로 도출한 회귀식에 대입하여 혈압을 계산합니다.  
+
+<div align="center">
+SBP(수축기 혈압) = -0.599*I_Rsys - 0.656*I_s + 249.942
+</div>
+<div align="center">
+DBP(이완기 혈압) = -0.212*I_Rdia - 0.251*I_s + 153.211
+</div> 
 
 
