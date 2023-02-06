@@ -49,7 +49,7 @@ HEART RATE MEASUREMENT
 
 BLOOD PRESSURE MEASUREMENT
 ---
-혈압을 측정하는 원리는 크게 4단계로 이루어집니다.  
+혈압을 측정하는 원리는 크게 3단계로 이루어집니다.  
 
 <p align="center"><img src="https://user-images.githubusercontent.com/75806377/216947733-5c0eab0e-c106-49ed-b6b9-f8efb7d0a1fd.png" height="300px" width="500px"></p>
 
