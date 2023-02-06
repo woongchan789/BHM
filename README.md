@@ -41,6 +41,6 @@ HEART RATE MEASUREMENT
 1. Average red intensity per frame - frame 당 평균 R값(Red)을 계산합니다.  
 2. Peak detection algorithm - 주기적으로 나타나는 뾰족한 peak를 찾아냅니다.  
 3. R-R interval(RRI) - Peak 사이의 시간 간격을 의미하는 RRI를 계산합니다.  
-4. 60/RRI - 구한 RRI를 사용하여 60/RRI를 하게되면 RRI가 60초동안 몇 번 나타나는지 즉, 심박수를 계산할 수 있습니다.  
+4. 60/RRI - 구한 RRI를 사용하여 60/RRI를 하게되면 심박수를 계산할 수 있습니다.  
 
 
